@@ -1,6 +1,7 @@
 // Scripts
 
 $(document).ready(function() {
+
     // Función para mostrar un mensaje de error de validación para un campo específico
     function showError(field, message) {
         field.addClass('is-invalid').after(`<div class="invalid-feedback">${message}</div>`);
@@ -86,3 +87,8 @@ $(document).ready(function() {
         }
     });
 });
+
+
+
+    
+  
