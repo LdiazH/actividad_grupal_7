@@ -51,7 +51,7 @@ images/
 
 ## Créditos
 
-Desarrollado por Grupo X para la actividad grupal 7.
+Desarrollado por Grupo 6 para la actividad grupal 7.
 
 ---
 
