@@ -1,3 +1,60 @@
+// Validación avanzada y feedback visual para la pasarela de pago simulada
+$(function() {
+    // Validación en tiempo real para número de tarjeta
+    $('#fixCardNumber').on('input', function() {
+        let val = $(this).val().replace(/\D/g, '');
+        $(this).val(val);
+        if(val.length !== 16) {
+            $(this).addClass('is-invalid');
+            $('#cardNumberError').show();
+        } else {
+            $(this).removeClass('is-invalid');
+            $('#cardNumberError').hide();
+        }
+    });
+    // Validación en tiempo real para CVV
+    $('#fixCardCVV').on('input', function() {
+        let val = $(this).val().replace(/\D/g, '');
+        $(this).val(val);
+        if(val.length !== 3) {
+            $(this).addClass('is-invalid');
+            $('#cvvError').show();
+        } else {
+            $(this).removeClass('is-invalid');
+            $('#cvvError').hide();
+        }
+    });
+    // Feedback visual al enviar el formulario
+    $('#formCompra').on('submit', function(e) {
+        // Si ya hay validación previa, no duplicar
+        let valid = true;
+        if($('#fixCardNumber').val().length !== 16) {
+            $('#fixCardNumber').addClass('is-invalid');
+            $('#cardNumberError').show();
+            valid = false;
+        }
+        if($('#fixCardCVV').val().length !== 3) {
+            $('#fixCardCVV').addClass('is-invalid');
+            $('#cvvError').show();
+            valid = false;
+        }
+        if(!valid) {
+            e.preventDefault();
+            return false;
+        }
+        // Mensaje de confirmación
+        bootbox.alert({
+            title: "¡Solicitud enviada!",
+            message: "Tu solicitud ha sido recibida. Pronto nos pondremos en contacto contigo para coordinar la reparación.",
+            centerVertical: true,
+            callback: function() {
+                $('#formCompra')[0].reset();
+            }
+        });
+        e.preventDefault();
+        return false;
+    });
+});
 // Scripts
 
 $(document).ready(function() {
@@ -70,21 +127,8 @@ $(document).ready(function() {
             showError(cvvField, 'El CVV debe tener 3 dígitos.');
         }
 
-        // --- Lógica de envío ---
+     
 
-        if (!isValid) {
-            // Si el formulario no es válido, hacer scroll al primer error
-            $('html, body').animate({
-                scrollTop: $('.is-invalid').first().offset().top - 100
-            }, 500);
-        } else {
-            // Si el formulario es válido, mostrar mensaje de éxito y reiniciar
-            // Se comprueba si bootbox está definido para evitar errores.
-            bootbox.alert('¡Solicitud enviada correctamente!', () => {
-                this.reset();
-                clearErrors();
-            });
-        }
     });
 });
 

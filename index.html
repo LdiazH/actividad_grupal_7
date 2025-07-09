@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="AutoFix - Reparación de vehículos a domicilio. Solicita tu servicio, agenda y paga en línea.">
+    <meta name="keywords" content="AutoFix, reparación, autos, domicilio, mecánica, servicios, agendar, pago en línea">
+    <meta name="author" content="Grupo X">
+    <link rel="icon" type="image/png" href="images/aceite.jpg">
     <link rel="stylesheet" href="css/style.css" >
 
     <!-- JQuery  -->
@@ -61,77 +64,105 @@
     </div>
 
     
-    <section>
+    <section aria-label="Formulario de solicitud y pago">
         <div class="container">
-            <div class="row mt-5">
+            <div class="row mt-5 justify-content-center">
                 <div class="col-md-10 col-lg-6 mb-4">
-                    <div class="card h-100 text-bg-warning">
-                        <form action="" id="formCompra">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="row my-3">
-                                    <div class="col-12">
-                                        <label for="fixName" class="form-label">Nombre Completo:</label>
-                                        <input type="text" id="fixName" name="fixName" class="form-control" value="" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fixOption" class="form-label">Tipo de Reparación:</label>
-                                        <select id="fixOption" name="fixOption" class="form-select" required>
-                                            <option selected disabled value="">Selecciona tu servicio</option>
-                                            <option value="Cambio de aceite">Cambio de aceite</option>
-                                            <option value="Revision de frenos">Revision de frenos</option>
-                                            <option value="Escáner">Escáner</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fixDescription" class="form-label">Descripción:</label>
-                                        <textarea class="form-control" id="fixDescription" rows="3" placeholder="Describe brevemente el problema de tu vehículo" required></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fixTime" class="form-label">Agendar Cita:</label>
-                                        <input type="datetime-local" id="fixTime" name="fixTime" class="form-control" placeholder="Selecciona tu horario" required>
-                                    </div>
-                                    <div class="col-12 mt-3">
-                                        <h4>Información de Pago (simulado)</h4>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fixCardNumber" class="form-label">Número de tarjeta:</label>
-                                        <input type="text" inputmode="numeric" maxlength="16" minlength="15" autocomplete="off" id="fixCardNumber" name="fixCardNumber" class="form-control" placeholder="**** **** **** 1234" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fixCardName" class="form-label">Nombre del titular:</label>
-                                        <input type="text" id="fixCardName" name="fixCardName" class="form-control" placeholder="Nombre del titular" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fixCardCVV" class="form-label">CVV:</label>
-                                        <input type="text" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" minlength="3" autocomplete="off" id="fixCardCVV" name="fixCardCVV" class="form-control" placeholder="123" required>
-                                    </div>
-                                    <div class="col-12 mt-3">
-                                        <button class="btn btn-primary" type="submit" id="btnConfirmarCita">
-                                            Confirmar Solicitud
-                                        </button>
+                    <div class="card h-100 text-bg-warning shadow-lg animate__animated animate__fadeInUp">
+                        <form action="#" id="formCompra" autocomplete="off" aria-label="Formulario de solicitud de reparación">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="row my-3">
+                                        <div class="col-12">
+                                            <label for="fixName" class="form-label">Nombre Completo:</label>
+                                            <input type="text" id="fixName" name="fixName" class="form-control" aria-required="true" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="fixOption" class="form-label">Tipo de Reparación:</label>
+                                            <select id="fixOption" name="fixOption" class="form-select" aria-required="true" required>
+                                                <option selected disabled value="">Selecciona tu servicio</option>
+                                                <option value="Cambio de aceite">Cambio de aceite</option>
+                                                <option value="Revision de frenos">Revision de frenos</option>
+                                                <option value="Escáner">Escáner</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="fixDescription" class="form-label">Descripción:</label>
+                                            <textarea class="form-control" id="fixDescription" rows="3" placeholder="Describe brevemente el problema de tu vehículo" aria-required="true" required></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="fixTime" class="form-label">Agendar Cita:</label>
+                                            <input type="datetime-local" id="fixTime" name="fixTime" class="form-control" aria-required="true" required>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <h4><i class="bi bi-credit-card-2-front me-2"></i>Información de Pago (simulada)</h4>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <label for="fixCardNumber" class="form-label">Número de tarjeta:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
+                                                <input type="text" inputmode="numeric" maxlength="16" minlength="16" pattern="[0-9]{16}" autocomplete="off" id="fixCardNumber" name="fixCardNumber" class="form-control" placeholder="1234 5678 9012 3456" aria-required="true" required>
+                                            </div>
+                                            <div class="invalid-feedback" id="cardNumberError">El número debe tener 16 dígitos.</div>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <label for="fixCardName" class="form-label">Nombre del titular:</label>
+                                            <input type="text" id="fixCardName" name="fixCardName" class="form-control" placeholder="Nombre del titular" aria-required="true" required>
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <label for="fixCardCVV" class="form-label">CVV:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+                                                <input type="text" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" minlength="3" autocomplete="off" id="fixCardCVV" name="fixCardCVV" class="form-control" placeholder="123" aria-required="true" required>
+                                            </div>
+                                            <div class="invalid-feedback" id="cvvError">El CVV debe tener 3 dígitos.</div>
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <label for="fixCardExp" class="form-label">Vencimiento:</label>
+                                            <input type="month" id="fixCardExp" name="fixCardExp" class="form-control" aria-required="true" required>
+                                        </div>
+                                        <div class="col-12 mt-3 d-grid">
+                                            <button class="btn btn-primary btn-lg animate__animated animate__pulse" type="submit" id="btnConfirmarCita">
+                                                <i class="bi bi-check-circle me-2"></i>Confirmar Solicitud
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Estilos movidos a css/style.css -->
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-4">
+    <!-- Footer mejorado -->
+    <footer class="bg-dark text-white text-center p-4 mt-5">
         <div class="container">
-            <p>&copy; 2025 AutoFix. Todos los derechos reservados.</p>
-            <div>
-                <a href="#" class="text-white me-3" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="text-white me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="text-white" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0 text-md-start">
+                    <p class="mb-1">&copy; 2025 AutoFix. Todos los derechos reservados.</p>
+                    <p class="mb-0"><i class="bi bi-geo-alt me-2"></i>Av. Principal 1234, Ciudad, País</p>
+                    <p class="mb-0"><i class="bi bi-envelope me-2"></i>contacto@autofix.com</p>
+                    <p class="mb-0"><i class="bi bi-telephone me-2"></i>+56 9 1234 5678</p>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <div>
+                        <a href="#" class="text-white me-3" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-70.6483%2C-33.4569%2C-70.6483%2C-33.4569&amp;layer=mapnik" style="border:1px solid #ccc; width:100%; height:100px; border-radius:8px;" allowfullscreen="" loading="lazy" title="Ubicación AutoFix"></iframe>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Animaciones CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="js/script.js"></script>
 </body>
 </html>
